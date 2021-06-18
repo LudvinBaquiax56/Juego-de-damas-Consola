@@ -2,10 +2,12 @@ package src.Menu;
 
 import src.Jugadores.*;
 import java.util.*;
+import src.Damas.*;
 
 public class Menu{
 
 	private VectorJugadores jugadores;
+	private JuegoDamas juego;
 
 	public Menu (){
 		jugadores = new VectorJugadores();
@@ -24,11 +26,12 @@ public class Menu{
             System.out.println("2. Ingresar Jugadores");
             System.out.println("3. Mostrar Jugadores");
             System.out.println("4. Ordenar Jugadores");
-            System.out.println("5. Salir");
+            System.out.println("5. Imprimir tablero");
+            System.out.println("6. Salir");
             opcion = scanner.nextInt();
             switch (opcion){
                 case 1:
-                    System.out.println("jugar");
+                    juego = new JuegoDamas();
                     break;
                 case 2:
                     jugadores.agregarJugador();
@@ -40,6 +43,9 @@ public class Menu{
                 	System.out.println("Ordenar");
                     break;
                 case 5:
+                	System.out.println("Ordenar");
+                    break;
+                case 6:
                     System.out.println("Gracias por Jugar");
                     salir = false;
                     break;

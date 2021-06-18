@@ -32,20 +32,28 @@ public class Casilla{
 		this.fichaCasilla = fichaCasilla;
 	}
 
+	public Ficha getFicha (){
+		return fichaCasilla;
+	}
+
+	public void setFichaCasilla(Ficha fichaCasilla){
+		this.fichaCasilla = fichaCasilla;
+	}
+
 	public String imprimirCasilla(int x, int y){
-		if (x%2 ==0 && y%2==0) {
-			if (Ficha == null) {
-				return ANSI_RED_BACKGROUND + "|   |";
+		if ((x + y)% 2 == 0) {
+			if (fichaCasilla == null) {
+				return ANSI_RED_BACKGROUND + "|   |" + ANSI_RESET ;
 			} else {
-				return ANSI_RED_BACKGROUND + "| " + fichaCasilla.pintarFicha() + " |";
+				return ANSI_RED_BACKGROUND + "| " + fichaCasilla.pintarFicha() + ANSI_RED_BACKGROUND + " |" + ANSI_RESET;
 			}	
 		} else {
-			if (Ficha == null) {
-				return ANSI_GREEN_BACKGROUND + "|   |";
+			if (fichaCasilla == null) {
+				return ANSI_GREEN_BACKGROUND + "|   |" + ANSI_RESET;
 			} else {
-				return ANSI_GREEN_BACKGROUND + "| " + fichaCasilla.pintarFicha() + " |";
-			}	
+				return ANSI_GREEN_BACKGROUND + "| " + fichaCasilla.pintarFicha() + ANSI_GREEN_BACKGROUND + " |" + ANSI_RESET;
+			}
 		}
-		
 	}
+
 }
