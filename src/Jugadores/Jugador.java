@@ -53,4 +53,8 @@ public class Jugador {
 	public void setPerdidos(int perdidos){
 		this.perdidos = perdidos;
 	}
+
+	public String mostrarDatos(){
+		return "Nombre: " + nombre +", Jugados: " + jugados + ", Ganados: " + ganados + ", Perdidos: " + perdidos;
+	}
 }
