@@ -1,5 +1,7 @@
 package src.Jugadores;
 
+import src.Damas.*; 
+
 public class Jugador {
 
 	private String nombre;
@@ -7,54 +9,74 @@ public class Jugador {
 	private int ganados;
 	private int perdidos;
 
-	public Jugador(String nombre){
+	//Jugabilidad
+	private boolean posibilidadComer;
+	private Ficha[] fichas;
+
+	public Jugador(String nombre) {
 		this.nombre = nombre;
 		jugados = 0;
 		ganados = 0;
 		perdidos = 0;
+		posibilidadComer = false;
 	}
 
-	public Jugador(String nombre, int jugados, int ganados, int perdidos){
+	public Jugador(String nombre, int jugados, int ganados, int perdidos) {
 		this.nombre = nombre;
 		this.jugados = jugados;
 		this.ganados = ganados;
 		this.perdidos = perdidos;
 	}
 
-	public String getNombre(){
+	public String getNombre() {
 		return nombre;
 	}
 
-	public void setNombre(String nombre){
+	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
 
-	public int getJugados(){
+	public int getJugados() {
 		return jugados;
 	}
 
-	public void setJugados(int jugados){
+	public void setJugados(int jugados) {
 		this.jugados = jugados;
 	}
 
-
-	public int getGanados(){
+	public int getGanados() {
 		return ganados;
 	}
 
-	public void setGandos(int ganados){
+	public void setGandos(int ganados) {
 		this.ganados = ganados;
 	}
 
-	public int getPerdidos(){
+	public int getPerdidos() {
 		return perdidos;
 	}
 
-	public void setPerdidos(int perdidos){
+	public void setPerdidos(int perdidos) {
 		this.perdidos = perdidos;
 	}
 
-	public String mostrarDatos(){
-		return "Nombre: " + nombre +", Jugados: " + jugados + ", Ganados: " + ganados + ", Perdidos: " + perdidos;
+	public boolean getPosibilidadComer(){
+		return posibilidadComer;
+	}
+
+	public void setPosibilidadComer(boolean posibilidadComer){
+		this.posibilidadComer = posibilidadComer;
+	}
+
+	public Ficha[] getFichas(){
+		return fichas;
+	}
+
+	public void setFichas(Ficha[] fichas){
+		this.fichas = fichas;
+	}
+	
+	public String mostrarDatos() {
+		return "Nombre: " + nombre + ", Jugados: " + jugados + ", Ganados: " + ganados + ", Perdidos: " + perdidos;
 	}
 }

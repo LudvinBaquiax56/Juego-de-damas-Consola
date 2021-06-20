@@ -40,18 +40,22 @@ public class Casilla{
 		this.fichaCasilla = fichaCasilla;
 	}
 
+	public boolean ocupado(){
+		return fichaCasilla != null;
+	}
+
 	public String imprimirCasilla(int x, int y){
 		if ((x + y)% 2 == 0) {
 			if (fichaCasilla == null) {
-				return ANSI_RED_BACKGROUND + "|   |" + ANSI_RESET ;
+				return ANSI_CYAN_BACKGROUND + "|   |" + ANSI_RESET ;
 			} else {
-				return ANSI_RED_BACKGROUND + "| " + fichaCasilla.pintarFicha() + ANSI_RED_BACKGROUND + " |" + ANSI_RESET;
+				return ANSI_CYAN_BACKGROUND + "| " + fichaCasilla.pintarFicha() + ANSI_CYAN_BACKGROUND + " |" + ANSI_RESET;
 			}	
 		} else {
 			if (fichaCasilla == null) {
-				return ANSI_GREEN_BACKGROUND + "|   |" + ANSI_RESET;
+				return ANSI_YELLOW_BACKGROUND + "|   |" + ANSI_RESET;
 			} else {
-				return ANSI_GREEN_BACKGROUND + "| " + fichaCasilla.pintarFicha() + ANSI_GREEN_BACKGROUND + " |" + ANSI_RESET;
+				return ANSI_YELLOW_BACKGROUND + "| " + fichaCasilla.pintarFicha() + ANSI_YELLOW_BACKGROUND + " |" + ANSI_RESET;
 			}
 		}
 	}

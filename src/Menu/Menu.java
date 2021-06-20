@@ -25,8 +25,8 @@ public class Menu{
             System.out.println("1. Jugar");
             System.out.println("2. Ingresar Jugadores");
             System.out.println("3. Mostrar Jugadores");
-            System.out.println("4. Ordenar Jugadores");
-            System.out.println("5. Imprimir tablero");
+            System.out.println("4. Ordenar Jugadores Ascendente");
+            System.out.println("5. Ordenar Jugadores Descendente");
             System.out.println("6. Salir");
             opcion = scanner.nextInt();
             switch (opcion){
@@ -40,10 +40,10 @@ public class Menu{
                 	jugadores.mostrarJugadores();
                     break;
                 case 4:
-                	System.out.println("Ordenar");
+                	System.out.println("Ordenar Ascendente");
                     break;
                 case 5:
-                	System.out.println("Ordenar");
+                	System.out.println("Ordenar Descendente");
                     break;
                 case 6:
                     System.out.println("Gracias por Jugar");
