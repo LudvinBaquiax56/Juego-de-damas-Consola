@@ -4,10 +4,18 @@ import src.Jugadores.Jugador;
 
 public class Tablero {
 
-	Casilla[][] tablero = new Casilla[8][8];
+	private Casilla[][] tablero = new Casilla[8][8];
 
 	public Tablero() {
 
+	}
+	
+	public Casilla [][] getTablero(){
+		return tablero;
+	}
+
+	public void setTablero(Casilla [][] tablero){
+		this.tablero = tablero;
 	}
 
 	public void llenarCasillas() {

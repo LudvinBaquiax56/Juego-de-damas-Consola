@@ -45,10 +45,12 @@ public class Menu {
                     jugadores.mostrarJugadores();
                     break;
                 case 4:
-                    System.out.println("Ordenar Ascendente");
+                    System.out.println("Ordenar Ascendente.....");
+                    jugadores.ordenarAscendente();
                     break;
                 case 5:
-                    System.out.println("Ordenar Descendente");
+                    System.out.println("Ordenar Descendente.....");
+                    jugadores.ordenarDescendente();
                     break;
                 case 6:
                     System.out.println("Gracias por Jugar");

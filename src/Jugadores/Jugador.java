@@ -49,7 +49,7 @@ public class Jugador {
 		return ganados;
 	}
 
-	public void setGandos(int ganados) {
+	public void setGanados(int ganados) {
 		this.ganados = ganados;
 	}
 
@@ -87,11 +87,17 @@ public class Jugador {
 
 	public boolean validarFichasVivas(){
 		for (int i = 0; i < fichas.length; i++) {
-			if (fichas[i] != null) {
+			if (fichas[i].getVivo() == true) {
 				return true;
 			}
 		}
 		return false;
+	}
+
+	public void rendirse(){
+		for (int i = 0; i < fichas.length; i++) {
+			fichas[i].setVivo(false);
+		}
 	}
 
 	public void llenarFichas(){
