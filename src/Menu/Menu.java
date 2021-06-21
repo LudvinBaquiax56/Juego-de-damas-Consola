@@ -6,18 +6,20 @@ import src.PPT.PiedraPapelTijera;
 import java.util.*;
 import src.Damas.*;
 
-public class Menu{
+public class Menu {
 
-	private VectorJugadores jugadores;
-	private JuegoDamas juego;
+    private VectorJugadores jugadores;
+    private JuegoDamas juego;
     private PiedraPapelTijera miniJuego;
+    private Jugador J1;
+    private Jugador J2;
 
-	public Menu (){
-		jugadores = new VectorJugadores();
-	}
+    public Menu() {
+        jugadores = new VectorJugadores();
+    }
 
-	public void mostrarMenu(){
-		boolean salir = true;
+    public void mostrarMenu() {
+        boolean salir = true;
         int opcion = 0;
         Scanner scanner = new Scanner(System.in);
 
@@ -32,7 +34,7 @@ public class Menu{
             System.out.println("5. Ordenar Jugadores Descendente");
             System.out.println("6. Salir");
             opcion = scanner.nextInt();
-            switch (opcion){
+            switch (opcion) {
                 case 1:
                     jugar();
                     break;
@@ -40,13 +42,13 @@ public class Menu{
                     jugadores.agregarJugador();
                     break;
                 case 3:
-                	jugadores.mostrarJugadores();
+                    jugadores.mostrarJugadores();
                     break;
                 case 4:
-                	System.out.println("Ordenar Ascendente");
+                    System.out.println("Ordenar Ascendente");
                     break;
                 case 5:
-                	System.out.println("Ordenar Descendente");
+                    System.out.println("Ordenar Descendente");
                     break;
                 case 6:
                     System.out.println("Gracias por Jugar");
@@ -58,19 +60,47 @@ public class Menu{
             }
 
         } while (salir);
-	}
+    }
 
-    public void jugar(){
+    public void jugar() {
         if (jugadores.validar2Jugadores()) {
-            Jugador J1 = jugadores.seleccionarJugador();
-            Jugador J2 = jugadores.seleccionarJugador();
+            J1 = jugadores.seleccionarJugador();
+            J2 = jugadores.seleccionarJugador();
             miniJuego = new PiedraPapelTijera(J1, J2);
-            int gandor = miniJuego.jugar();
-            System.out.println(gandor);
-            juego = new JuegoDamas();    
+            int ganador = miniJuego.jugar();
+            seleccionarColorPiezas(ganador);
+            juego = new JuegoDamas(J1,J2);
         } else {
             System.out.println("No hay mas de dos jugadores, agrega los jugadores en la opcion 2");
             System.out.println("Numero de jugadores registrados: " + jugadores.size());
         }
+    }
+
+    public void seleccionarColorPiezas(int ganador) {
+        Scanner scanner = new Scanner(System.in);
+        if (ganador == 1) {
+            mostrarMensajeEleccion(J1);
+            int eleccion = scanner.nextInt();
+            boolean color = seleccionColorPiezas(eleccion);
+            J1.setColorFicha(color);
+            J2.setColorFicha(!color);
+        } else {
+            mostrarMensajeEleccion(J2);
+            int eleccion = scanner.nextInt();
+            boolean color = seleccionColorPiezas(eleccion);
+            J2.setColorFicha(color);
+            J1.setColorFicha(!color);
+        }
+
+    }
+
+    public boolean seleccionColorPiezas(int eleccion) {
+        return !(eleccion == 1);
+    }
+
+    public void mostrarMensajeEleccion(Jugador jugador) {
+        System.out.println(jugador.getNombre() + " Selecciona el color que deseas jugar: ");
+        System.out.println("1. Blancas");
+        System.out.println("2. Negras");
     }
 }

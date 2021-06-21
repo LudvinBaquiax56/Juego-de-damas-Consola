@@ -94,8 +94,11 @@ public class Jugador {
 		return false;
 	}
 
-	public void llenarFichas(boolean color){
-
+	public void llenarFichas(){
+		fichas = new Ficha[12]; 
+		for (int i = 0; i < fichas.length; i++) {
+			fichas[i] = new Ficha(colorFicha);
+		}
 	}
 	
 	public String mostrarDatos() {

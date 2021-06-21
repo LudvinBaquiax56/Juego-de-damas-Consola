@@ -22,7 +22,7 @@ public class PiedraPapelTijera {
         System.out.println(jugador1.getNombre() + " tu arma es " + arma(armaJ1));
         System.out.println(jugador2.getNombre() + " tu arma es " + arma(armaJ2));
         if (armaJ1 == armaJ2) {
-            System.out.println("Empate");
+            System.out.println("Empate!!!!!!!");
             return jugar();
         } else if (armaJ1 == piedra && armaJ2 == tijera) {
             System.out.println("El ganador es " + jugador1.getNombre());

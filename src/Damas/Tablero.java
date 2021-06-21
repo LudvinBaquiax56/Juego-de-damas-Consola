@@ -1,5 +1,7 @@
 package src.Damas;
 
+import src.Jugadores.Jugador;
+
 public class Tablero {
 
 	Casilla[][] tablero = new Casilla[8][8];
@@ -16,26 +18,40 @@ public class Tablero {
 		}
 	}
 
-	public void iniciarTablero() {
+	public void iniciarTablero(Jugador J1, Jugador J2) {
+		if (J1.getColorFicha()) {
+			iniciarTableroBlancas(J1);
+			iniciarTableroNegras(J2);
+		} else {
+			iniciarTableroBlancas(J2);
+			iniciarTableroNegras(J1);
+		}
+	}
+	public void iniciarTableroNegras(Jugador jugadorNegras) {
+		int contador = 0;
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < tablero[0].length; j++) {
 				if ((i + j) % 2 == 0) {
-					tablero[i][j].setFichaCasilla(new Ficha(true));
+					tablero[i][j].setFichaCasilla(jugadorNegras.getFichas()[contador]);
+					contador ++;
 				}
 			}
 		}
+	}
 
+	public void iniciarTableroBlancas (Jugador jugadorBlancas){
+		int contador = 0;
 		for (int i = 5; i < 8; i++) {
 			for (int j = 0; j < tablero[0].length; j++) {
 				if ((i + j) % 2 == 0) {
-					tablero[i][j].setFichaCasilla(new Ficha(false));
+					tablero[i][j].setFichaCasilla(jugadorBlancas.getFichas()[contador]);
+					contador ++;
 				}
 			}
 		}
 	}
 
 	public void imprimirTablero() {
-		iniciarTablero();
 		imprimirNumeros();
 		for (int i = 0; i < tablero.length; i++) {
 			System.out.print((i + 1) + " ");
