@@ -1,6 +1,8 @@
 package src.Menu;
 
 import src.Jugadores.*;
+import src.PPT.PiedraPapelTijera;
+
 import java.util.*;
 import src.Damas.*;
 
@@ -8,6 +10,7 @@ public class Menu{
 
 	private VectorJugadores jugadores;
 	private JuegoDamas juego;
+    private PiedraPapelTijera miniJuego;
 
 	public Menu (){
 		jugadores = new VectorJugadores();
@@ -31,7 +34,7 @@ public class Menu{
             opcion = scanner.nextInt();
             switch (opcion){
                 case 1:
-                    juego = new JuegoDamas();
+                    jugar();
                     break;
                 case 2:
                     jugadores.agregarJugador();
@@ -56,4 +59,18 @@ public class Menu{
 
         } while (salir);
 	}
+
+    public void jugar(){
+        if (jugadores.validar2Jugadores()) {
+            Jugador J1 = jugadores.seleccionarJugador();
+            Jugador J2 = jugadores.seleccionarJugador();
+            miniJuego = new PiedraPapelTijera(J1, J2);
+            int gandor = miniJuego.jugar();
+            System.out.println(gandor);
+            juego = new JuegoDamas();    
+        } else {
+            System.out.println("No hay mas de dos jugadores, agrega los jugadores en la opcion 2");
+            System.out.println("Numero de jugadores registrados: " + jugadores.size());
+        }
+    }
 }

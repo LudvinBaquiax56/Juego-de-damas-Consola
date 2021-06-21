@@ -21,7 +21,10 @@ public class PiedraPapelTijera {
         int armaJ2 = aleatorio();
         System.out.println(jugador1.getNombre() + " tu arma es " + arma(armaJ1));
         System.out.println(jugador2.getNombre() + " tu arma es " + arma(armaJ2));
-        if (armaJ1 == piedra && armaJ2 == tijera) {
+        if (armaJ1 == armaJ2) {
+            System.out.println("Empate");
+            return jugar();
+        } else if (armaJ1 == piedra && armaJ2 == tijera) {
             System.out.println("El ganador es " + jugador1.getNombre());
             return 1;
         } else if (armaJ1 == papel && armaJ2 == piedra) {
@@ -31,7 +34,7 @@ public class PiedraPapelTijera {
             System.out.println("El ganador es " + jugador1.getNombre());
             return 1;
         } else {
-            System.out.println("El ganador es" + jugador2.getNombre());
+            System.out.println("El ganador es " + jugador2.getNombre());
             return 2;
         }
     }
@@ -45,6 +48,6 @@ public class PiedraPapelTijera {
         }
     }
     public int aleatorio() {
-        return (int) Math.random() * 2;
+        return (int) (Math.random() * 2);
     }
 }

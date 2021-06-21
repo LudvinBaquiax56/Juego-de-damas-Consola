@@ -8,6 +8,7 @@ public class Jugador {
 	private int jugados;
 	private int ganados;
 	private int perdidos;
+	private boolean colorFicha;
 
 	//Jugabilidad
 	private boolean posibilidadComer;
@@ -74,6 +75,27 @@ public class Jugador {
 
 	public void setFichas(Ficha[] fichas){
 		this.fichas = fichas;
+	}
+
+	public boolean getColorFicha(){
+		return colorFicha;
+	}
+
+	public void setColorFicha(boolean colorFicha){
+		this.colorFicha = colorFicha;
+	}
+
+	public boolean validarFichasVivas(){
+		for (int i = 0; i < fichas.length; i++) {
+			if (fichas[i] != null) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public void llenarFichas(boolean color){
+
 	}
 	
 	public String mostrarDatos() {
