@@ -32,7 +32,7 @@ public class Casilla{
 		this.fichaCasilla = fichaCasilla;
 	}
 
-	public Ficha getFicha (){
+	public Ficha getFichaCasilla (){
 		return fichaCasilla;
 	}
 

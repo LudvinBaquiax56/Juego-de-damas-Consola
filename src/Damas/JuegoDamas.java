@@ -30,29 +30,84 @@ public class JuegoDamas {
 	public void jugar() {
 		Casilla[][] casillas = tabla.getTablero();
 		while (jugador1.validarFichasVivas() && jugador2.validarFichasVivas()) {
-			if (jugador1.validarFichasVivas()) {
+			if (jugador1.validarFichasVivas() && jugador2.validarFichasVivas()) {
+				
 				int[] coordenadas = pedirCasilla(jugador1);
-
+				//Valida si esta el jugador no se ha rendido 
+				//valida si la casilla inicila esta ocupada 
+				//valida que la casilla ocupada del color correspendiente al jugador
 				if (validarPerdida(coordenadas) && casillas[coordenadas[0] - 1][coordenadas[1] - 1].ocupado()
-						&& casillas[coordenadas[0] - 1][coordenadas[1] - 1].getFicha().getColorNegro() == jugador1
+						&& casillas[coordenadas[0] - 1][coordenadas[1] - 1].getFichaCasilla().getColorNegro() == jugador1
 								.getColorFicha()) {
-					System.out.println("valido");
-					return;
+
+					if (jugador1.getColorFicha()) {
+						// negro
+						if (validarMovimientoValido(coordenadas,jugador1.getColorFicha())) {
+							Casilla [][] aux  = tabla.getTablero();
+							Ficha auxFicha  = aux [coordenadas[0]-1][ coordenadas[1]-1].getFichaCasilla();
+							aux [coordenadas[0]-1][ coordenadas[1]-1].setFichaCasilla(null);
+							aux [coordenadas[2]-1][ coordenadas[3]-1].setFichaCasilla(auxFicha);
+						}
+					} else {
+						// blango
+						if (validarMovimientoValido(coordenadas,jugador1.getColorFicha())) {
+							Casilla [][] aux  = tabla.getTablero();
+							Ficha auxFicha  = aux [coordenadas[0]-1][ coordenadas[1]-1].getFichaCasilla();
+							aux [coordenadas[0]-1][ coordenadas[1]-1].setFichaCasilla(null);
+							aux [coordenadas[2]-1][ coordenadas[3]-1].setFichaCasilla(auxFicha);
+						}
+					}
+					tabla.imprimirTablero();
 				}
 			}
-			if (jugador2.validarFichasVivas()) {
+			if (jugador2.validarFichasVivas() && jugador1.validarFichasVivas()) {
 				int[] coordenadas = pedirCasilla(jugador2);
 
 				if (validarPerdida(coordenadas) && casillas[coordenadas[0] - 1][coordenadas[1] - 1].ocupado()
-						&& casillas[coordenadas[0] - 1][coordenadas[1] - 1].getFicha().getColorNegro() == jugador2
+						&& casillas[coordenadas[0] - 1][coordenadas[1] - 1].getFichaCasilla().getColorNegro() == jugador2
 								.getColorFicha()) {
-					System.out.println("valido");
-					return;
+
+					if (jugador2.getColorFicha()) {
+						// negro
+						if (validarMovimientoValido(coordenadas,jugador2.getColorFicha())) {
+							Casilla [][] aux  = tabla.getTablero();
+							Ficha auxFicha  = aux [coordenadas[0]-1][ coordenadas[1]-1].getFichaCasilla();
+							aux [coordenadas[0]-1][ coordenadas[1]-1].setFichaCasilla(null);
+							aux [coordenadas[2]-1][ coordenadas[3]-1].setFichaCasilla(auxFicha);
+						}
+					} else {
+						// blango
+						if (validarMovimientoValido(coordenadas,jugador2.getColorFicha())) {
+							Casilla [][] aux  = tabla.getTablero();
+							Ficha auxFicha  = aux [coordenadas[0]-1][ coordenadas[1]-1].getFichaCasilla();
+							aux [coordenadas[0]-1][ coordenadas[1]-1].setFichaCasilla(null);
+							aux [coordenadas[2]-1][ coordenadas[3]-1].setFichaCasilla(auxFicha);
+						}
+					}
+					tabla.imprimirTablero();
 				}
 
 			}
 		}
+		scanner.nextLine();
 		declararGandor();
+	}
+
+	private boolean validarMovimientoValido(int[] coordenadas, boolean subir) {
+		int a = Math.abs(coordenadas[0] - coordenadas[2]);
+		int b = Math.abs(coordenadas[1] - coordenadas[3]);
+		if (subir) {
+			if (coordenadas[1] - coordenadas[3] > 0
+					&& a == b) {
+				return true;
+			}
+		} else {
+			if (coordenadas[1] - coordenadas[3] < 0
+					&& a == b) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public void declararGandor() {
@@ -80,13 +135,12 @@ public class JuegoDamas {
 		String cordenadas;
 		int[] cordenadasInt = new int[4];
 		do {
-			System.out.println(jugador.getNombre() + " Juegas con el color " + colorFicha(jugador1.getColorFicha()));
+			System.out.println(jugador.getNombre() + " Juegas con el color " + colorFicha(jugador.getColorFicha()));
 			System.out.println("Ingresa la casilla incio y fin");
 			System.out.println("Ejemplo \"X1,Y1-X2,Y2\"");
 			cordenadas = scanner.nextLine();
 			if (cordenadas.equalsIgnoreCase("R")) {
 				jugador.rendirse();
-				System.out.println("perdi");
 				llenarNulos(cordenadasInt);
 				return cordenadasInt;
 			}
@@ -102,9 +156,10 @@ public class JuegoDamas {
 		}
 	}
 
-	private boolean validarPerdida(int [] cordenadas){
+	// Valida si un jugador ha decido abandonar la partida
+	private boolean validarPerdida(int[] cordenadas) {
 		for (int i = 0; i < cordenadas.length; i++) {
-			if(cordenadas[i] == -1){
+			if (cordenadas[i] == -1) {
 				return false;
 			}
 		}
@@ -115,10 +170,10 @@ public class JuegoDamas {
 		String[] parInicio = cordenadasXY(parCordenadas[0]);
 		String[] parFin = cordenadasXY(parCordenadas[1]);
 		int[] cordenadas = new int[4];
-		cordenadas[0] = Integer.parseInt(parInicio[1]);
-		cordenadas[1] = Integer.parseInt(parInicio[0]);
-		cordenadas[2] = Integer.parseInt(parFin[1]);
-		cordenadas[3] = Integer.parseInt(parFin[0]);
+		cordenadas[0] = Integer.parseInt(parInicio[0]);
+		cordenadas[1] = Integer.parseInt(parInicio[1]);
+		cordenadas[2] = Integer.parseInt(parFin[0]);
+		cordenadas[3] = Integer.parseInt(parFin[1]);
 		return cordenadas;
 	}
 
